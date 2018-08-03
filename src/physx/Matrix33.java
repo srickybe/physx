@@ -82,22 +82,16 @@ class Matrix33 {
 
     public Matrix33 invert() {
         double[][] res = new double[3][3];
-
-        res[0][0] = (cmp[1][1] * cmp[2][2] - cmp[1][2] * cmp[2][1]);
-        res[1][0] = (cmp[1][2] * cmp[2][0] - cmp[1][0] * cmp[2][2]);
-        res[2][0] = (cmp[1][0] * cmp[2][1] - cmp[1][1] * cmp[2][0]);
-
         double invDet = 1.0 / det();
-        res[0][0] *= invDet;
+        res[0][0] = (cmp[1][1] * cmp[2][2] - cmp[1][2] * cmp[2][1]) * invDet;
         res[0][1] = (cmp[0][2] * cmp[2][1] - cmp[0][1] * cmp[2][2]) * invDet;
         res[0][2] = (cmp[0][1] * cmp[1][2] - cmp[0][2] * cmp[1][1]) * invDet;
-        res[1][0] *= invDet;
+        res[1][0] = (cmp[1][2] * cmp[2][0] - cmp[1][0] * cmp[2][2]) * invDet;
         res[1][1] = (cmp[0][0] * cmp[2][2] - cmp[0][2] * cmp[2][0]) * invDet;
         res[1][2] = (cmp[0][2] * cmp[1][0] - cmp[0][0] * cmp[1][2]) * invDet;
-        res[2][0] *= invDet;
+        res[2][0] = (cmp[1][0] * cmp[2][1] - cmp[1][1] * cmp[2][0]) * invDet;
         res[2][1] = (cmp[0][1] * cmp[2][0] - cmp[0][0] * cmp[2][1]) * invDet;
         res[2][2] = (cmp[0][0] * cmp[1][1] - cmp[0][1] * cmp[1][0]) * invDet;
-
         cmp = res;
 
         return this;
